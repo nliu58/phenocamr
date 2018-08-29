@@ -113,8 +113,11 @@ detect_outliers = function(data,
       t = amp / 4
 
       # drop NA's, messes with diff()
-      gcc_change = c(NA,diff(gcc[!is.na(gcc)]))
-
+      #gcc_change = c(NA,diff(gcc[!is.na(gcc)]))
+      gcc_change = c(NA,diff(gcc))
+      # NA should be kept, otherwise this code is wrong:
+      # gcc[selection] = NA
+      
       # select days that drop more than 1/4 in amplitude
       selection = which(gcc_change < ( t * -1 ) )
 
